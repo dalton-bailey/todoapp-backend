@@ -9,48 +9,49 @@
 //   },
 // ];
 
-function initTodos(initalTodos) {
-  initalTodos.forEach(item => {
+async function fetchTodos() {
+  let response = await fetch("http://localhost:3000/todos");
+  let data = await response.json();
 
-  }) 
+  console.log(data);
+
+  return data;
+
 }
 
+fetchTodos().then((initalTodos) => {
+  initTodos(initalTodos);
+});
 
-
-
-function initTodos() {
-  if (window.localStorage.getItem("todo")) {
-    getFromStorage();
-  } else {
-    saveToStorage();
-  }
+function initTodos(initalTodos) {
 
   const initalList = document.querySelector(".initialTodos");
   initalList.innerHTML = "";
-  initalTodos.forEach((item) => addTodo(item));
+  initalTodos.forEach((item) => 
+  addTodo(item));
   deleteTodo();
   completeTodo();
 }
 
 //filter by category
-const groceryItems = initalTodos.filter((item) => item.category === "Grocery");
-const schoolItems = initalTodos.filter((item) => item.category === "School");
-const houseItems = initalTodos.filter((item) => item.category === "House");
+// const groceryItems = initalTodos.filter((item) => item.category === "Grocery");
+// const schoolItems = initalTodos.filter((item) => item.category === "School");
+// const houseItems = initalTodos.filter((item) => item.category === "House");
 
 //push new todo to inital array and call displayTodos to display
-function newTodo(todoContent, todoCategory) {
-  const todoData = {
-    id: initalTodos.length + 1,
-    todo: todoContent,
-    complete: false,
-    category: todoCategory,
-  };
+// function newTodo(todoContent, todoCategory) {
+//   const todoData = {
+//     // id: initalTodos.length + 1,
+//     todo: todoContent,
+//     complete: false,
+//     category: todoCategory,
+//   };
 
-  initalTodos.push(todoData);
-  saveToStorage();
+//   initalTodos.push(todoData);
+//   // saveToStorage();
 
-  initTodos(initalTodos);
-}
+//   initTodos(initalTodos);
+// }
 
 //delete list items
 function deleteTodo() {
@@ -60,7 +61,7 @@ function deleteTodo() {
       const id = event.target.dataset.id;
       const index = initalTodos.findIndex((item) => item.id == id);
       initalTodos.splice(index, 1);
-      saveToStorage();
+      // saveToStorage();
       initTodos(initalTodos);
     });
   }
@@ -74,27 +75,24 @@ function completeTodo() {
       const id = event.target.dataset.id;
       const index = initalTodos.findIndex((item) => item.id == id);
       initalTodos[index].complete = !initalTodos[index].complete;
-      saveToStorage();
+      // saveToStorage();
       if (initalTodos[index].complete === true) {
-        console.log(check.parentElement)
-            }
-      else {
-        console.log('false')
+        console.log(check.parentElement);
+      } else {
+        console.log("false");
       }
     });
   }
 }
 
+// //local storage
+// function saveToStorage() {
+//   window.localStorage.setItem("todo", JSON.stringify(initalTodos));
+// }
 
-
-//local storage
-function saveToStorage() {
-  window.localStorage.setItem("todo", JSON.stringify(initalTodos));
-}
-
-function getFromStorage() {
-  initalTodos = JSON.parse(window.localStorage.getItem("todo"));
-}
+// function getFromStorage() {
+//   initalTodos = JSON.parse(window.localStorage.getItem("todo"));
+// }
 
 function addTodo(item) {
   const initalList = document.querySelector(".initialTodos");
@@ -153,8 +151,7 @@ function main() {
 
 main();
 
-const header = document.querySelector(".categoryHeader")
-
+const header = document.querySelector(".categoryHeader");
 
 //toggle all todos
 const allTodos = document.querySelector("#allTodosBtn");
@@ -164,7 +161,7 @@ allTodos.addEventListener("click", (event) => {
   let school = document.getElementById("schoolTodos");
   let house = document.getElementById("houseTodos");
 
-  header.innerHTML = "All Todos"
+  header.innerHTML = "All Todos";
 
   if (allTodos.style.display === "block") {
     allTodos.style.display = "none";
@@ -259,7 +256,6 @@ allTodos.addEventListener("click", (event) => {
 //   houseList.innerHTML = "";
 //   houseItems.forEach((item) => addHouseTodo(item));
 // }
-
 
 // //toggle grocery todos
 // const grocery = document.querySelector("#groceryBtn");

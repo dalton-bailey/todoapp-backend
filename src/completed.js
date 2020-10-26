@@ -1,50 +1,50 @@
-//Completed Todos
-const completedTodosArray = initalTodos.filter(
-  (item) => item.complete === true
-);
+// //Completed Todos
+// const completedTodosArray = initalTodos.filter(
+//   (item) => item.complete === true
+// );
 
-//toggle completed todos
-const clearDoneTodos = document.querySelector("#clearDoneBtn");
-clearDoneTodos.addEventListener("click", (event) => {
-  const header = document.querySelector(".completedheader");
-  header.innerHTML = "Completed Todos";
+// //toggle completed todos
+// const clearDoneTodos = document.querySelector("#clearDoneBtn");
+// clearDoneTodos.addEventListener("click", (event) => {
+//   const header = document.querySelector(".completedheader");
+//   header.innerHTML = "Completed Todos";
 
-  //completed todos
-  function addCompletedTodo(item) {
-    let completedUl = document.querySelector(".completedTodos");
+//   //completed todos
+//   function addCompletedTodo(item) {
+//     let completedUl = document.querySelector(".completedTodos");
 
-    const todo = document.createElement("li");
+//     const todo = document.createElement("li");
 
-    todo.innerHTML = `
-      <label>${item.category} - ${item.todo}</label>
-      `;
+//     todo.innerHTML = `
+//       <label>${item.category} - ${item.todo}</label>
+//       `;
 
-    completedUl.appendChild(todo);
-  }
+//     completedUl.appendChild(todo);
+//   }
 
-  function initCompletedTodos() {
-    if (window.localStorage.getItem("todo")) {
-      getFromStorage();
-    } else {
-      saveToStorage();
-    }
+//   function initCompletedTodos() {
+//     if (window.localStorage.getItem("todo")) {
+//       getFromStorage();
+//     } else {
+//       saveToStorage();
+//     }
 
-    const completedList = document.querySelector(".completedTodos");
-    completedList.innerHTML = "";
-    completedTodosArray.forEach((item) => addCompletedTodo(item));
-  }
+//     const completedList = document.querySelector(".completedTodos");
+//     completedList.innerHTML = "";
+//     completedTodosArray.forEach((item) => addCompletedTodo(item));
+//   }
 
-  function mainCompleted() {
-    initCompletedTodos();
-  }
+//   function mainCompleted() {
+//     initCompletedTodos();
+//   }
 
-  mainCompleted();
+//   mainCompleted();
 
-  let completedTodos = document.getElementById("completedTodos");
+//   let completedTodos = document.getElementById("completedTodos");
 
-  if (completedTodos.style.display === "block") {
-    completedTodos.style.display = "none";
-  } else {
-    completedTodos.style.display = "block";
-  }
-});
+//   if (completedTodos.style.display === "block") {
+//     completedTodos.style.display = "none";
+//   } else {
+//     completedTodos.style.display = "block";
+//   }
+// });

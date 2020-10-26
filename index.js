@@ -6,13 +6,13 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-const categoryRoutes = require('./routes/category')
+// const categoryRoutes = require('./routes/category')
 const todosRoutes = require('./routes/todos')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/categories', categoryRoutes)
+// app.use('/categories', categoryRoutes)
 app.use('/todos', todosRoutes)
 app.use(express.static('src'))
 

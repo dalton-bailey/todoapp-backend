@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Category = require('./categoryModel');
 const Schema = mongoose.Schema;
 
 const TodosSchema = new Schema({
@@ -10,6 +11,10 @@ const TodosSchema = new Schema({
         type: Boolean,
         required: true,
     },
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category'
+    }
 
 })
 

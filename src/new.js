@@ -29,8 +29,8 @@ function initTodos(initalTodos) {
   initalList.innerHTML = "";
   initalTodos.forEach((item) => 
   addTodo(item));
-  deleteTodo();
-  completeTodo();
+  // deleteTodo();
+  // completeTodo();
 }
 
 //filter by category

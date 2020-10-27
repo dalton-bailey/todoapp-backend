@@ -4,7 +4,7 @@ const router = express.Router();
 const Todos = require("../models/todosModel");
 
 //get all todos
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   Todos.find({})
     .then((todos) => {
       res.json(todos);

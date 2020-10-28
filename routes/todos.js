@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const cors = require('cors')
+
+router.use(cors())
 
 const Todos = require("../models/todosModel");
 
@@ -12,32 +15,56 @@ router.get("/", (req, res, next) => {
     .catch((err) => {
       res.json(err);
     });
+    
 });
 
-//create a category
+//create a todo
 router.post('/', (req, res) => {
+  console.log(req);
   Todos.create({
-    todo: req.query.todo,
-    complete: req.query.complete,
-    category: req.query.category
+    todo: req.body.todo,
+    complete: req.body.complete,
+    category: req.body.category
   })
     .then((todos) => {
       res.json(todos);
     })
     .catch((err) => {
       res.json(err);
+
+
+    Todos.find((err, todos) => {
+      if (err) console.log(handleError(err));
+      res.json(todos);
     });
+    });
+
 });
 
 //delete a todo
-router.delete("/", (req, res) => {
-  Todos.deleteOne({ name: req.query.name }, (err, todos) => {
-    Todos.find((err, todos) => {
-      if (err) console.log(err);
+router.delete('/:id', (req, res) => {
+  Todos.deleteOne({ _id: req.params.id}, (err, todos) => {
+    if(err) console.log(err)
 
-      res.json(todos);
+    Todos.find((err, skis) => {
+      if (err) console.log(handleError(err));
+      res.json(skis);
     });
-  });
+
+  })
 });
+
+//update a todo
+router.put('/', (req, res) => {
+    Todos.findById({ id: req.body._id}, (err, todos) => {
+      if(err) console.log(err)
+
+    todo.update(req.body, (err, todos) => {
+      if(err) console.log(err)
+
+
+    })
+  })
+})
 
 module.exports = router;

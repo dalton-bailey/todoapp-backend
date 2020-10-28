@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const cors = require('cors')
 
 const app = express();
 
@@ -16,7 +15,6 @@ app.use(bodyParser.json());
 // app.use('/categories', categoryRoutes)
 app.use('/todos', todosRoutes)
 app.use(express.static('src'))
-app.use(cors())
 
 mongoose.connect(
   "mongodb+srv://admin_user:HxkSk4DjUsf2pfUv@cluster0.wfrgb.mongodb.net/skis?retryWrites=true&w=majority",

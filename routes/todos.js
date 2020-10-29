@@ -55,7 +55,7 @@ router.delete('/:id', (req, res) => {
 });
 
 //update a todo
-router.put('/', (req, res) => {
+router.put('/:id', (req, res) => {
     Todos.findById({ id: req.body._id}, (err, todos) => {
       if(err) console.log(err)
 

@@ -46,9 +46,9 @@ router.delete('/:id', (req, res) => {
   Todos.deleteOne({ _id: req.params.id}, (err, todos) => {
     if(err) console.log(err)
 
-    Todos.find((err, skis) => {
+    Todos.find((err, todos) => {
       if (err) console.log(handleError(err));
-      res.json(skis);
+      res.json(todos);
     });
 
   })
@@ -56,12 +56,17 @@ router.delete('/:id', (req, res) => {
 
 //update a todo
 router.put('/:id', (req, res) => {
-    Todos.findById({ id: req.body._id}, (err, todos) => {
+    Todos.findById({ _id: req.params.id}, (err, todos) => {
       if(err) console.log(err)
 
-    todo.update(req.body, (err, todos) => {
+    todos.update(req.query, (err, todos) => {
       if(err) console.log(err)
 
+
+    Todos.find((err, todos) => {
+      if (err) console.log(handleError(err));
+      res.json(todos);
+    });
 
     })
   })
